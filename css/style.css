@@ -10,6 +10,30 @@ Dark green: #28b485
 /* Reset. This is needed so each browser renders the same
 This universal selector, * will select every element
 
+
+*/
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: inherit;
+}
+
+/* This is where you specify the root font size
+Using REM for design makes it really easy to make mobile versions of a site
+Using font size of 10 now makes it easy to convert px to REM in your head.
+This is the same as 62.5%. It's better to use percentages for accessibility reasons
+
+Not supported below IE9.
+*/
+html {
+    font-size: 62.5%
+}
+
+/* Setting default font - will be helpful due to inheritance
+line-height means 1.7x the regular line height
+The padding sets that border around the page
+
 Box-sizing as border box
 By Default, width + padding + border = actual width,
 height + padding + border = actual height
@@ -19,31 +43,14 @@ padding and border sizes
 
 https://www.w3schools.com/css/css3_box-sizing.asp
 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* This is where you specify the root font size
-Using REM for design makes it really easy to make mobile versions of a site
-Using font size of 10 now makes it easy to convert px to REM in your head.
-
-*/
-html {
-    font-size: 10px;
-}
-
-/* Setting default font - will be helpful due to inheritance
-line-height means 1.7x the regular line height
-The padding sets that border around the page
-*/
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
     line-height: 1.7;
     color: #777;
     padding: 3rem;
+
+    box-sizing: border-box;
 }
 /* vh is vertical height. This is saying element should be 95% of view height
  in URL, .. goes one level up (like a terminal command)
@@ -69,14 +76,14 @@ body {
 }
 
 /* This will be 40px from the top and left corner*/
-.logo-box {
+.header__logo-box {
     position: absolute;
     top: 4rem;
     left: 4rem;
 }
 
 /* Width will scale accordingly by default*/
-.logo {
+.header__logo {
     height: 3.5rem;
 }
 /* Element Types: (modified by property display)
@@ -107,7 +114,7 @@ Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-v
 }
  */
 
-.heading-primary-main {
+.heading-primary--main {
     display: block;
     font-size: 6rem;
     font-weight: 700;
@@ -129,7 +136,7 @@ Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-v
 
 /*The letter spacing and stuff is trial and error
 Edited in the dev tools in Chrome*/
-.heading-primary-sub {
+.heading-primary--sub {
     display: block;
     font-size: 2rem;
     font-weight: 400;
@@ -149,7 +156,7 @@ Point of the box, which is the top left corner, in relation to the parent elemen
 To fix this, we can use the translate function, which takes two parameters.
 This specifies translations to x and y, and those values are in relation to the width of the box.
 */
-.header-text-box {
+.header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -240,7 +247,7 @@ Simple version of transition. ALL elements will be transitioned for .2 seconds. 
     transition: all .2s
 }
 
-.btn-white{
+.btn--white{
     background-color: white;
     color: #777777;
 }
@@ -284,7 +291,7 @@ Simple version of transition. ALL elements will be transitioned for .2 seconds. 
     transition: all 0.4s;
 }
 
-.btn-white::after {
+.btn--white::after {
     background-color: white;
 }
 
@@ -299,7 +306,7 @@ Simple version of transition. ALL elements will be transitioned for .2 seconds. 
 /* .75s delay
  fill-mode - apply the styles of the 0% before the animation starts.
  */
-.btn-animated {
+.btn--animated {
     animation: moveInUp .5s ease-out .75s;
     animation-fill-mode: backwards;
 }
