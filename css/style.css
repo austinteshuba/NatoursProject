@@ -90,7 +90,14 @@ Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-v
        As long as you aren't flipping objects, this should fix some shakes with animations
      */
     backface-visibility: hidden;
+    margin-bottom: 20px;
 }
+
+/* Suppose we wanted an animation on a different event, like hover
+.logo:hover {
+    animation: moveInLeft 1s ease-out;
+}
+ */
 
 .heading-primary-main {
     display: block;
@@ -108,6 +115,8 @@ Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-v
         can use cubic-benzier function here as well
     */
     animation-timing-function: ease-out;
+
+
 }
 
 /*The letter spacing and stuff is trial and error
@@ -137,6 +146,7 @@ This specifies translations to x and y, and those values are in relation to the 
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 /* There are two types of animations
@@ -185,5 +195,84 @@ X% - X% of the way through the animation
         transform: translate(0);
     }
 
+}
+
+/* This is a psuedo class that lets you style an element under specific conditions
+link is function of an anchor element, where the button acts as a link.
+visited is the state when the anchor element was already clicked before.
+
+Button is inline by default. should be inline block. Since its inline, it's treated like text.
+So, to center it, we can do text-align to center.
+
+A really high border radius will create rounded courners. No difference between different large values
+
+Simple version of transition. ALL elements will be transitioned for .2 seconds. Transition must be on the initial state.
+ */
+.btn:link,
+.btn:visited {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    border-radius: 100px;
+
+    position: relative;
+    transition: all .2s
+}
+
+.btn-white{
+    background-color: white;
+    color: #777777;
+}
+
+/* y-axis moves from top to bottom
+
+ black box shadow is 10px in the downward direction with a high blur and .2 opacity*/
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* when clicked */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+}
+
+/* must always specify a content and display
+  This pseudo element is treated as a child of the button.
+
+  Absolute positions need a reference, and that will always be the first
+  parent element it can find with relative positioning.
+
+  If we didn't change the button value to have relative positioning,
+  this would have been the header
+
+  z-index by default. -1 is behind other objects.
+*/
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    transition: all 0.4s;
+}
+
+.btn-white::after {
+    background-color: white;
+}
+
+/* after pseudo element only during the hover state
+ Opacity 0 means fading out.
+ */
+.btn:hover::after {
+    transform: scale(1.5);
+    opacity: 0;
 }
 
