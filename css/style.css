@@ -25,6 +25,15 @@ https://www.w3schools.com/css/css3_box-sizing.asp
     box-sizing: border-box;
 }
 
+/* This is where you specify the root font size
+Using REM for design makes it really easy to make mobile versions of a site
+Using font size of 10 now makes it easy to convert px to REM in your head.
+
+*/
+html {
+    font-size: 10px;
+}
+
 /* Setting default font - will be helpful due to inheritance
 line-height means 1.7x the regular line height
 The padding sets that border around the page
@@ -32,10 +41,9 @@ The padding sets that border around the page
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
     line-height: 1.7;
     color: #777;
-    padding: 30px
+    padding: 3rem;
 }
 /* vh is vertical height. This is saying element should be 95% of view height
  in URL, .. goes one level up (like a terminal command)
@@ -63,13 +71,13 @@ body {
 /* This will be 40px from the top and left corner*/
 .logo-box {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
 /* Width will scale accordingly by default*/
 .logo {
-    height: 35px;
+    height: 3.5rem;
 }
 /* Element Types: (modified by property display)
 inline: Displays an element as an inline element (i.e. same line), taking up as much height/width as the content
@@ -90,7 +98,7 @@ Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-v
        As long as you aren't flipping objects, this should fix some shakes with animations
      */
     backface-visibility: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 /* Suppose we wanted an animation on a different event, like hover
@@ -101,9 +109,9 @@ Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-v
 
 .heading-primary-main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 700;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
 
     animation-name: moveInLeft;
     animation-duration: 1.0s;
@@ -123,9 +131,9 @@ Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-v
 Edited in the dev tools in Chrome*/
 .heading-primary-sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 400;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.74rem;
 
     /*animation-name: moveInRight;*/
     /*animation-duration: 1.0s;*/
@@ -166,11 +174,11 @@ X% - X% of the way through the animation
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-30%);
+        transform: translateX(-10rem);
     }
 
     90% {
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
 
     100% {
@@ -182,11 +190,11 @@ X% - X% of the way through the animation
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(30%);
+        transform: translateX(10rem);
     }
 
     90% {
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
 
     /*This should match the ending condition of the object.*/
@@ -200,7 +208,7 @@ X% - X% of the way through the animation
 @keyframes moveInUp {
     0% {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(12rem);
     }
 
     100% {
@@ -225,9 +233,9 @@ Simple version of transition. ALL elements will be transitioned for .2 seconds. 
     display: inline-block;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
-    border-radius: 100px;
-
+    padding: 1.5rem 4rem;
+    border-radius: 10rem;
+    font-size: 1.6rem;
     position: relative;
     transition: all .2s
 }
@@ -241,14 +249,14 @@ Simple version of transition. ALL elements will be transitioned for .2 seconds. 
 
  black box shadow is 10px in the downward direction with a high blur and .2 opacity*/
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);
 }
 
 /* when clicked */
 .btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+    transform: translateY(-.1rem);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,0.25);
 }
 
 /* must always specify a content and display
@@ -267,7 +275,7 @@ Simple version of transition. ALL elements will be transitioned for .2 seconds. 
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     position: absolute;
     top: 0;
     left: 0;
