@@ -197,6 +197,18 @@ X% - X% of the way through the animation
 
 }
 
+@keyframes moveInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
 /* This is a psuedo class that lets you style an element under specific conditions
 link is function of an anchor element, where the button acts as a link.
 visited is the state when the anchor element was already clicked before.
@@ -272,7 +284,15 @@ Simple version of transition. ALL elements will be transitioned for .2 seconds. 
  Opacity 0 means fading out.
  */
 .btn:hover::after {
-    transform: scale(1.5);
+    transform: scaleX(1.4) scaleY(1.6);
     opacity: 0;
+}
+
+/* .75s delay
+ fill-mode - apply the styles of the 0% before the animation starts.
+ */
+.btn-animated {
+    animation: moveInUp .5s ease-out .75s;
+    animation-fill-mode: backwards;
 }
 
