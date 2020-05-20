@@ -21,3 +21,15 @@ Images need to be adapted for each viewport widths. They aren't like text, where
 
 To change styles depending on specific ranges of viewport width (usually for mobile and desktop)
 We use media queries to create a different version of our site for different widths.
+
+Building Grids:
+Columns should be inside of a row.
+So, we need to build rows as well.
+
+To Compile SASS:
+1) npm init
+2) npm install node-sass --save-dev
+3) make the "compile:sass" = "node-sass <SASS DIR> <CSS DIR> -w" function. -w stands for watch.
+4) use npm run compile:sass to trigger that
+5) Use live-server by writing "live-server"
+    5a) npm install live-server -g (globally) if you haven't done so yet

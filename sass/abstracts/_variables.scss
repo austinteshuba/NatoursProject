@@ -1,6 +1,13 @@
+
+// Colors
 $color-primary: #55c57a;
 $color-primary-light: #7ed56f;
 $color-primary-dark: #28b485;
 $color-white: #FFFFFF;
 $color-grey-dark: #777;
 $color-black: black;
+
+// Grid Variables
+$grid-width: 114rem;
+$gutter-vertical: 80px; // This doesn't really need to be in rem since it's vertical.
+$gutter-horizontal: 6rem;

@@ -1,0 +1,8 @@
+@mixin clearfix {
+ // adds a pseudo-element after the element which will clear the floats and keep the height of rows
+  &::after {
+    content: "";
+    display: table; // This is the standard value of the method
+    clear: both; // Works on both float left and right
+  }
+}

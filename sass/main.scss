@@ -22,3 +22,5 @@ you can build on easily. Based on 7:1 Principle.
 @import "base/utilities";
 @import "components/button"; // Components are reusable segments of code
 @import "layout/header"; // Layouts are global components (likely consistent through project)
+@import "layout/grid"; // This is used for a sample grid
+
