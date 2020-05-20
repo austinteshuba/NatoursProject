@@ -1,0 +1,94 @@
+
+
+.btn {
+  /* This is a psuedo class that lets you style an element under specific conditions
+link is function of an anchor element, where the button acts as a link. (blue and underlined by default)
+visited is the state when the anchor element was already clicked before. (purple and underlined by default)
+
+Button is inline by default. should be inline block. Since its inline, it's treated like text.
+So, to center it, we can do text-align to center.
+
+A really high border radius will create rounded courners. No difference between different large values
+
+Simple version of transition. ALL elements will be transitioned for .2 seconds. Transition must be on the initial state.
+ */
+  &:link, &:visited {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    border-radius: 10rem;
+    font-size: 1.6rem;
+    position: relative;
+    transition: all .2s
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  /* y-axis moves from top to bottom
+
+ black box shadow is 10px in the downward direction with a high blur and .2 opacity*/
+  &:hover {
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black,.2);
+
+
+    /* after pseudo element only during the hover state
+   Opacity 0 means fading out.
+   */
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  // When Clicked
+  &:active {
+    transform: translateY(-.1rem);
+    box-shadow: 0 .5rem 1rem rgba($color-black, .25);
+  }
+
+  /* must always specify a content and display
+  This pseudo element is treated as a child of the button.
+
+  Absolute positions need a reference, and that will always be the first
+  parent element it can find with relative positioning.
+
+  If we didn't change the button value to have relative positioning,
+  this would have been the header
+
+  z-index by default. -1 is behind other objects.
+*/
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    // transition all available properties
+    transition: all 0.4s;
+  }
+
+
+  /* .75s delay
+ fill-mode - apply the styles of the 0% before the animation starts.
+ */
+  &--animated {
+    animation: moveInUp .5s ease-out .75s;
+    animation-fill-mode: backwards;
+  }
+
+}
+

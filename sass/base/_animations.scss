@@ -1,0 +1,62 @@
+
+
+/* There are two types of animations
+1) Just use the transition property, and change the properties
+2) Advanced animations
+
+For browser performance, it's best to only animate 2 properties:
+1) opacity
+2) transform property
+
+X% - X% of the way through the animation
+0% - this is before the start of the animation
+
+
+*/
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  90% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  90% {
+    transform: translateX(-1rem);
+  }
+
+  /*This should match the ending condition of the object.*/
+  100%{
+    opacity: 1;
+    transform: translate(0);
+  }
+
+}
+
+@keyframes moveInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+

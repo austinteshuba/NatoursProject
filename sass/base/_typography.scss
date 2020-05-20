@@ -1,0 +1,87 @@
+
+/* Element Types: (modified by property display)
+inline: Displays an element as an inline element (i.e. same line), taking up as much height/width as the content
+Any height or width specifications have no effect
+
+inline-block: Same thing as inline, but you can specify height and width
+
+block: starts on a new line, takes up the whole width of the parent element
+
+Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-vs-block/
+*/
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+
+  /* Fixes the shakiness with animations.
+     This determines if the back part of an element is visible or not to the user.
+     As long as you aren't flipping objects, this should fix some shakes with animations
+   */
+  backface-visibility: hidden;
+  margin-bottom: 2rem;
+
+
+  /* Suppose we wanted an animation on a different event, like hover
+.logo:hover {
+    animation: moveInLeft 1s ease-out;
+}
+ */
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 3.5rem;
+
+    animation-name: moveInLeft;
+    animation-duration: 1.0s;
+    /* will happen 3 times
+    animation-iteration-count: 3;
+    */
+
+    /* changes the speed through the animation
+        can use cubic-benzier function here as well
+    */
+    animation-timing-function: ease-out;
+  }
+
+  /*The letter spacing and stuff is trial and error
+Edited in the dev tools in Chrome*/
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.74rem;
+
+    /*animation-name: moveInRight;*/
+    /*animation-duration: 1.0s;*/
+    /*animation-timing-function: ease-out;
+    this is the same as:
+    */
+
+    animation: moveInRight 1s ease-out;
+  }
+
+}
+
+
+/* Setting default font - will be helpful due to inheritance
+line-height means 1.7x the regular line height
+The padding sets that border around the page
+
+Box-sizing as border box
+By Default, width + padding + border = actual width,
+height + padding + border = actual height
+
+By setting to border-box, the width/height property includes
+padding and border sizes
+
+https://www.w3schools.com/css/css3_box-sizing.asp
+*/
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: $color-grey-dark;
+  padding: 3rem;
+
+}

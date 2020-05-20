@@ -1,0 +1,258 @@
+/*
+Firstly, this is a lot of comments.
+This is because the below is acting
+as my NOTES for SASS and CSS.
+As such, things are way over explained.
+
+Also, the directory is intended for large projects.
+This is super overkill for a small project like this one,
+but it's always good to start with a solid architecture
+you can build on easily. Based on 7:1 Principle.
+ */
+/* Reset. This is needed so each browser renders the same
+This universal selector, * will select every element
+
+
+*/
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+/* This is where you specify the root font size
+Using REM for design makes it really easy to make mobile versions of a site
+Using font size of 10 now makes it easy to convert px to REM in your head.
+This is the same as 62.5%. It's better to use percentages for accessibility reasons
+
+Not supported below IE9.
+*/
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box; }
+
+/* There are two types of animations
+1) Just use the transition property, and change the properties
+2) Advanced animations
+
+For browser performance, it's best to only animate 2 properties:
+1) opacity
+2) transform property
+
+X% - X% of the way through the animation
+0% - this is before the start of the animation
+
+
+*/
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  90% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  90% {
+    transform: translateX(-1rem); }
+  /*This should match the ending condition of the object.*/
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+/* Element Types: (modified by property display)
+inline: Displays an element as an inline element (i.e. same line), taking up as much height/width as the content
+Any height or width specifications have no effect
+
+inline-block: Same thing as inline, but you can specify height and width
+
+block: starts on a new line, takes up the whole width of the parent element
+
+Good source: https://www.samanthaming.com/pictorials/css-inline-vs-inlineblock-vs-block/
+*/
+.heading-primary {
+  color: #FFFFFF;
+  text-transform: uppercase;
+  /* Fixes the shakiness with animations.
+     This determines if the back part of an element is visible or not to the user.
+     As long as you aren't flipping objects, this should fix some shakes with animations
+   */
+  backface-visibility: hidden;
+  margin-bottom: 2rem;
+  /* Suppose we wanted an animation on a different event, like hover
+.logo:hover {
+    animation: moveInLeft 1s ease-out;
+}
+ */
+  /*The letter spacing and stuff is trial and error
+Edited in the dev tools in Chrome*/ }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1.0s;
+    /* will happen 3 times
+    animation-iteration-count: 3;
+    */
+    /* changes the speed through the animation
+        can use cubic-benzier function here as well
+    */
+    animation-timing-function: ease-out; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.74rem;
+    /*animation-name: moveInRight;*/
+    /*animation-duration: 1.0s;*/
+    /*animation-timing-function: ease-out;
+    this is the same as:
+    */
+    animation: moveInRight 1s ease-out; }
+
+/* Setting default font - will be helpful due to inheritance
+line-height means 1.7x the regular line height
+The padding sets that border around the page
+
+Box-sizing as border box
+By Default, width + padding + border = actual width,
+height + padding + border = actual height
+
+By setting to border-box, the width/height property includes
+padding and border sizes
+
+https://www.w3schools.com/css/css3_box-sizing.asp
+*/
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem; }
+
+.btn {
+  /* This is a psuedo class that lets you style an element under specific conditions
+link is function of an anchor element, where the button acts as a link. (blue and underlined by default)
+visited is the state when the anchor element was already clicked before. (purple and underlined by default)
+
+Button is inline by default. should be inline block. Since its inline, it's treated like text.
+So, to center it, we can do text-align to center.
+
+A really high border radius will create rounded courners. No difference between different large values
+
+Simple version of transition. ALL elements will be transitioned for .2 seconds. Transition must be on the initial state.
+ */
+  /* y-axis moves from top to bottom
+
+ black box shadow is 10px in the downward direction with a high blur and .2 opacity*/
+  /* must always specify a content and display
+  This pseudo element is treated as a child of the button.
+
+  Absolute positions need a reference, and that will always be the first
+  parent element it can find with relative positioning.
+
+  If we didn't change the button value to have relative positioning,
+  this would have been the header
+
+  z-index by default. -1 is behind other objects.
+*/
+  /* .75s delay
+ fill-mode - apply the styles of the 0% before the animation starts.
+ */ }
+  .btn:link, .btn:visited {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    border-radius: 10rem;
+    font-size: 1.6rem;
+    position: relative;
+    transition: all .2s; }
+  .btn--white {
+    background-color: #FFFFFF;
+    color: #777; }
+    .btn--white::after {
+      background-color: #FFFFFF; }
+  .btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    /* after pseudo element only during the hover state
+   Opacity 0 means fading out.
+   */ }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25); }
+  .btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s; }
+  .btn--animated {
+    animation: moveInUp .5s ease-out .75s;
+    animation-fill-mode: backwards; }
+
+/* vh is vertical height. This is saying element should be 95% of view height
+ in URL, .. goes one level up (like a terminal command)
+ cover - whatever the width is of the box, they will try to fit the image in the box.
+
+ background-position: So by default, the top of the image is never cropped.
+ We can set to bottom, which means bottom stays the same, top gets cropped off
+ Center means that the image gets cropped on top and bottom
+
+ Gradient - always use background image property
+
+ clip-path: where you want the element to be visible
+ bennettfeely.com/clippy is a good resource to make the polygon params
+ */
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* This will be 40px from the top and left corner*/
+  /* Width will scale accordingly by default*/
+  /*
+  Setting top and left to 50% won't center the object. Instead, it will center the reference
+  Point of the box, which is the top left corner, in relation to the parent element
+  To fix this, we can use the translate function, which takes two parameters.
+  This specifies translations to x and y, and those values are in relation to the width of the box.
+  */ }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }

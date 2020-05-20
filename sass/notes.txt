@@ -1,0 +1,23 @@
+These are just some notes for myself about the course
+
+Basic Design Principles:
+
+1) Fluid Grids and Layouts
+
+To allow content to adapt to different screen sizes (i.e. viewport widths), we should use percentages rather than pixels
+
+There are 3 major ways of laying out a website:
+
+1) Float based layouts: Putting boxes next to each other using floats. Most supported by alternatives
+    This is what is used in this Natours project.
+2) FlexBox: Great for laying out elements in a 1D Row. Doesn't work with all browsers
+3) Grid: Great for laying out elements in a 2D Grid. Doesn't work with all browsers
+
+2) Flexible/Responsive Images
+
+Images need to be adapted for each viewport widths. They aren't like text, where this can be handled nicely with code.
+
+3) Media Queries
+
+To change styles depending on specific ranges of viewport width (usually for mobile and desktop)
+We use media queries to create a different version of our site for different widths.

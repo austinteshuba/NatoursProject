@@ -1,0 +1,56 @@
+
+
+/* vh is vertical height. This is saying element should be 95% of view height
+ in URL, .. goes one level up (like a terminal command)
+ cover - whatever the width is of the box, they will try to fit the image in the box.
+
+ background-position: So by default, the top of the image is never cropped.
+ We can set to bottom, which means bottom stays the same, top gets cropped off
+ Center means that the image gets cropped on top and bottom
+
+ Gradient - always use background image property
+
+ clip-path: where you want the element to be visible
+ bennettfeely.com/clippy is a good resource to make the polygon params
+ */
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba($color-primary-light,0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  /* This will be 40px from the top and left corner*/
+  // This is the same as writing .header__logo-box
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  /* Width will scale accordingly by default*/
+  &__logo {
+    height: 3.5rem;
+  }
+
+  /*
+  Setting top and left to 50% won't center the object. Instead, it will center the reference
+  Point of the box, which is the top left corner, in relation to the parent element
+  To fix this, we can use the translate function, which takes two parameters.
+  This specifies translations to x and y, and those values are in relation to the width of the box.
+  */
+  &__text-box {
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+
+
+}
+
