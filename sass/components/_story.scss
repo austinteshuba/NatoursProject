@@ -1,0 +1,88 @@
+.story {
+  width: 75%;
+  margin: 0 auto; // Block element inside of a block element, so this will work to center them!
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  background-color: rgba($color-white, .6);
+  border-radius: .3rem;
+  padding: 6rem;
+  transform: skewX(-12deg);
+
+  font-size: 1.6rem;
+
+  &:not(:first-child) {
+    margin-top: 6rem;
+  }
+
+  &> * {
+    transform: skewX(12deg);
+  }
+
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+  }
+
+  @include respond(phone) {
+    transform: skewX(0deg);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%); // This will only work if the element is floated and the element has defined dimensions (i.e. width and height)
+    // margin-right: 2rem; THIS IS BAD PRACTICE FOR WORKING WITH FLOATING ELEMENTS!!!
+    transform: skewX(12deg) translateX(-2rem) translateY(-1rem) !important;
+    overflow: hidden;
+    position: relative;
+    webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+
+    @include respond(phone) {
+      transform: skewX(0deg) translateX(-2rem) translateY(-1rem) !important;
+    }
+  }
+
+  &__text {
+    @include respond(phone) {
+      transform: skewX(0deg) !important;
+    }
+  }
+
+  &__img {
+    height: 100%;
+    transform: scale(1.4) translateX(calc((-1 * (100% - 15rem)/2) / 1.4)); // I DONT LIKE THIS!!! THIS MEANS IT ISN'T EXACTLY CENTER.
+    backface-visibility: hidden;
+    transition: all .2s;
+  }
+
+  &__caption {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0);
+
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: $color-white;
+    text-transform: uppercase;
+    opacity: 0;
+
+    transition: all .2s;
+    backface-visibility: hidden; // To fix the shakiness on the transition
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: scale(1.0) translateX(calc((-1 * (100% - 15rem)/2) / 1.0));
+    filter: blur(3px) brightness(90%);
+  }
+
+
+}

@@ -1,0 +1,193 @@
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  // You cannot use clearfix when the issue is because of absolute positioning
+  // Clearfix only works on floats
+  height: 52rem;
+
+  &__side {
+    height: 52rem;
+    transition: all .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: .3rem;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    overflow: hidden; // This will be broken by that clip path property on the images though. In response, you will have to set the border radiuses of the image itself manually so it matches this
+
+    // Basically, the front does not have an initial rotation
+    // But the back side starts off rotated 180 degrees.
+    // On hover, they need to swap!
+    &--front {
+      background-color: $color-white;
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+
+      &-1 {
+        background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+      }
+
+      &-2 {
+        background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+      }
+
+      &-3 {
+        background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+      }
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg); // Be careful on the directions here! You should always test animations by doing them really slow to realize errors. This was wrong initially with a value of 180deg, not -180.
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+
+  // FRONT SIDE STYLING
+  &__picture {
+    background-size: cover;
+    background-position: top;
+    height: 23rem;
+    background-blend-mode: screen; // This is a special method of blending together two background images that are on top of each other. This is like a special effect and there is a bunch. You should trial and error these.
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 20rem, 0 23rem); // This is required for certain browsers
+    clip-path: polygon(0 0, 100% 0, 100% 20rem, 0 23rem);
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+
+    &--1 {
+      background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+    }
+
+    &--2 {
+      background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+    }
+
+    &--3 {
+      background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7.jpg);
+    }
+  }
+
+  &__heading {
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: $color-white;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+    text-align: right;
+    width: 70% // This will force that line break effect we want.
+
+  }
+
+  &__heading-span {
+    padding: 1rem 1.5rem;
+    -webkit-box-decoration-break: clone; // This will apply all of the declarations to all of the boxes created by the element. In this case, this span creates two boxes despite being only one element
+    box-decoration-break: clone;
+
+    &--1 {
+      background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
+    }
+
+    &--2 {
+      background-image: linear-gradient(to right bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .85));
+    }
+
+    &--3 {
+      background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, .85), rgba($color-tertiary-dark, .85));
+    }
+  }
+
+  &__details {
+    padding: 3rem;
+    ul {
+      list-style: none; // Get rid of the default styles
+      width: 80%;
+      margin: 0 auto; // Will center the block element inside of another block element!
+
+      li {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem; // This just happens to work out for the height.
+
+        &:not(:last-child) {
+          border-bottom: solid .1rem $color-grey-light-2;
+        }
+      }
+
+    }
+  }
+
+  // BACK SIDE STYLING
+  &__call-to-action {
+    @include absCenter;
+    width: 90%;
+    text-align: center;
+  }
+
+  &__price-box {
+    margin-bottom: 8rem;
+    color: $color-white;
+  }
+
+  &__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 100;
+  }
+
+  // Will activate on tab-port OR if the screen cannot hover (i.e. touch device). If you want
+  // a query for devices that *can* hover, use "@media only screen and (hover: hover) {}"
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    position: relative;
+    height: auto;
+    border-radius: 3px;
+    background-color: $color-white;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+    &__side {
+      height: auto;
+      position: relative;
+      box-shadow: none;
+
+      &--back {
+        transform: rotateY(0deg);
+
+        clip-path: polygon(0 3rem, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    &:hover &__side--front {
+      transform: rotateY(0deg); // Be careful on the directions here! You should always test animations by doing them really slow to realize errors. This was wrong initially with a value of 180deg, not -180.
+    }
+
+    &:hover &__side--back {
+      transform: rotateY(0);
+    }
+
+    // BACK SIDE STYLING
+    &__call-to-action {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: translate(0);
+      width: 100%;
+      padding: 4rem;
+    }
+
+    &__price-box {
+      margin-bottom: 3rem;
+    }
+  }
+}

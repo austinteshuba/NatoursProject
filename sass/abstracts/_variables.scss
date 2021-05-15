@@ -5,9 +5,23 @@ $color-primary-light: #7ed56f;
 $color-primary-dark: #28b485;
 $color-white: #FFFFFF;
 $color-grey-dark: #777;
+$color-grey-dark-2: #999;
 $color-black: black;
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eeeeee;
+$color-grey-dark-3: #2d2d2d;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
 
 // Grid Variables
 $grid-width: 114rem;
-$gutter-vertical: 80px; // This doesn't really need to be in rem since it's vertical.
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
 $gutter-horizontal: 6rem;
+
+// Font-sizes
+$font-default: 1.6rem;

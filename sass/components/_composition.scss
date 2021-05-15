@@ -1,0 +1,64 @@
+.composition {
+  position: relative; // So this can be the anchor
+
+  &__photo {
+    width: 55%; // 55% of parent element width
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+    border-radius: .2rem;
+    position: absolute;
+    transition: all .2s;
+    outline-offset: 2rem;
+
+    &--p1 {
+      left: 0;
+      top: -2rem;
+
+      @include respond(tab-port) {
+        top: 0;
+        left: 0;
+      }
+    }
+
+    &--p2 {
+      right: 0;
+      top: 2rem;
+
+      @include respond(tab-port) {
+        top: -1rem;
+        left: -1rem;
+        transform: scale(1.3);
+        z-index: 4;
+      }
+    }
+
+    &--p3 {
+      left: 20%;
+      top: 10rem;
+
+      @include respond(tab-port) {
+        top: 1rem;
+        left: 0;
+        transform: scale(1.1);
+      }
+    }
+
+    &:hover {
+      outline: 1.5rem solid $color-primary;
+      transform: scale(1.05);
+      box-shadow: 0 2.5rem 6rem rgba($color-black, .5);
+      z-index: 1;
+    }
+
+    @include respond(tab-port) {
+      position: relative;
+      float: left;
+      width: 33.33333%;
+      box-shadow: 0 1.5rem 3rem rgba($color-black, .2);
+    }
+  }
+
+  &:hover &__photo:not(:hover) {
+    transform: scale(.95);
+  }
+
+}

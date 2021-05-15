@@ -7,12 +7,24 @@
 
   @include clearfix; // Will fix any clear fix issues from floated child elements
 
+  @include respond(tab-land) {
+    padding: 0 3rem;
+  }
+
+  @include respond(tab-port) {
+    max-width: 50rem;
+  }
+
 
   // Not Pseudo selector
   // same as .row:not()
   // This selects everything BUT the last-child.
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-small;
+    }
   }
 
   // The class name starts with "col"
@@ -22,11 +34,19 @@
   // * is for contains
   // This is really helpful for the Don't Repeat Yourself Principle.
   [class^="col"] {
-    background-color: orangered;
     float: left;
 
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-small;
+      }
+    }
+
+    @include respond(tab-port) {
+      width: 100% !important;
     }
   }
 

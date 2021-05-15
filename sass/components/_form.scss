@@ -1,0 +1,109 @@
+// Form barely inherits anything!!
+.form {
+  &__input {
+    font-size: 1.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: .2rem;
+    background-color: rgba($color-white, .5);
+    border: none;
+    font-family: inherit;
+    color: inherit;
+    border-bottom: .3rem solid transparent;
+    display: block;
+    width: 90%;
+    transition: all .3s;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem color($color-black, .1);
+      border-bottom: .3rem solid $color-primary;
+
+      &:invalid {
+        border-bottom: .3rem solid $color-secondary-dark;
+      }
+    }
+
+    // This is the actual placeholder within the form!
+    &::-webkit-input-placeholder {
+      color: $color-grey-dark-2;
+    }
+  }
+
+  // This is the sibling selector
+  // This will onlye work if
+  // 1) The label is AFTER the input
+  // and 2) there is no other elements in between the input and the label like a div or a button.
+  &__input:placeholder-shown + &__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+
+  &__label {
+    //opacity: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: inline-block;
+    transform: translateY(0);
+    transition: all .2s;
+  }
+
+  &__group {
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__radio-group {
+    width: 49%;
+    display: inline-block;
+
+    @include respond(tab-port) {
+      display: block;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__radio-label {
+    font-size: 1.6rem;
+    cursor: pointer;
+    position: relative;
+    padding-left: 5rem;
+  }
+
+  &__radio-button {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border: .5rem solid $color-primary;
+    border-radius: 1000px;
+    position: absolute;
+    top: -.4rem;
+    left: 0;
+
+    &::after {
+      @include absCenter;// Will still anchor to the radio-button! position does not have to be relative, it just has to be specified.
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      content: "";
+      background-color: $color-primary;
+      border-radius: 1000px;
+      opacity: 0;
+      transition: all .3s;
+    }
+  }
+
+  &__radio-input:checked + &__radio-label &__radio-button::after {
+    opacity: 1;
+  }
+
+
+}

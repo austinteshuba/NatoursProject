@@ -21,6 +21,15 @@ you can build on easily. Based on 7:1 Principle.
 @import "base/typography"; // Anything related to text settings
 @import "base/utilities";
 @import "components/button"; // Components are reusable segments of code
+@import "components/composition";
+@import "components/feature-box";
+@import "components/card";
+@import "components/story";
+@import "components/bg-video";
+@import "components/form";
+@import "components/popup";
+@import "layout/footer";
+@import "layout/navigation";
 @import "layout/header"; // Layouts are global components (likely consistent through project)
 @import "layout/grid"; // This is used for a sample grid
 

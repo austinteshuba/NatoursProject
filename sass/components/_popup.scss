@@ -1,0 +1,113 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba($color-grey-dark-3, .7);
+  width: 100vw;
+  height: 100vh;
+  z-index: 2500;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s;
+
+  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba($color-grey-dark-3, .3);
+  }
+
+  &:target {
+    opacity: 1;
+    visibility: visible;
+
+    .popup__content {
+      width: 80%;
+    }
+  }
+
+  &__content {
+    @include absCenter;
+    //@include clearfix; - this would be needed if you used floating child elements.
+    border-radius: 5px;
+    background-color: $color-white;
+    width: 80%;
+    display: flex; // We are doing this so the left and right boxes can have the same height.
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    transform: translate(-50%, -50%) scale(.3);
+    transition: all .5s;
+    opacity: 0;
+  }
+
+  &__left {
+    width: calc(100%/3);
+    display: flex; // When you use this, you do not have to use float.
+    flex-direction: column;
+    justify-content: center;
+
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+
+  &__right {
+    width: calc(100% / 3 * 2);
+    //display: table-cell;
+    vertical-align: middle;
+    padding: 3rem 5rem;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+  }
+
+  &__img {
+    //display: block;
+    //width: 100%;
+    object-fit: cover;
+    flex-basis: 50%;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid $color-grey-dark-2; // Border
+    hyphens: auto; // You need a lot of prefixes with this for it to be supported in all browsers.
+    // You can add this later - not putting here. Use Auto Prefixer.
+
+    @include respond(phone) {
+      column-count: 1;
+      column-gap: 0;
+      column-rule: none; // Border
+
+      overflow-y: scroll;
+    }
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      text-decoration: none;
+      color: $color-grey-dark-2;
+      font-size: 4rem;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      line-height: 1;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &:target &__content {
+    transform: translate(-50%, -50%) scale(1.0);
+    opacity: 1;
+  }
+}

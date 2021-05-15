@@ -33,3 +33,13 @@ To Compile SASS:
 4) use npm run compile:sass to trigger that
 5) Use live-server by writing "live-server"
     5a) npm install live-server -g (globally) if you haven't done so yet
+
+Emmet Extension: Let's you write HTML quickly
+
+.test = <div class="test">
+section.about = <section class="about">
+
+A key thing to think about through the entire design process is reusability.
+Think ahead!
+
+Resources page: codingheroes.io/resources/
